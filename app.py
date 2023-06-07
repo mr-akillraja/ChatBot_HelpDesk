@@ -2,12 +2,12 @@ from flask import Flask,render_template,request,jsonify
 import os
 from dotenv import load_dotenv
 import openai
-
+from gevent.pywsgi import WSGIServer
 
 
 load_dotenv()
 openai.api_key = os.environ["OPEN_API_KEY"]
-print(openai.api_key)
+#print(openai.api_key)
 
 # setup a Flask app
 app = Flask(__name__)
@@ -58,4 +58,7 @@ def chatbot():
 
 
 if __name__ == "__main__":
-    app.run(debug = True)
+    # http_server = WSGIServer(("127.0.0.1", 8080), app)
+    # http_server.serve_forever()
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=8080)
