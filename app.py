@@ -57,8 +57,4 @@ def chatbot():
 
 
 
-if __name__ == "__main__":
-    # http_server = WSGIServer(("127.0.0.1", 8080), app)
-    # http_server.serve_forever()
-    from waitress import serve
-    serve(app, host="0.0.0.0", port=8080)
+
